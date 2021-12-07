@@ -17,4 +17,6 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && gem install html-proofer && jekyll build --future --safe && htmlproofer --allow_hash_href --only_4xx --file_ignore /blog/201[0-5]/ ./_site"
+        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && gem install html-proofer \ 
+        && jekyll build --future --safe \
+        && htmlproofer --allow_hash_href --only_4xx --file_ignore ${{ github.workspace }}/blog/201[0-5]/ ${{ github.workspace }}/_site"
